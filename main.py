@@ -47,11 +47,11 @@ def all(message):
 #Зовем в доту
 @bot.message_handler(commands=['dota'])
 def all(message):
-    bot.reply_to(message, f"Го в доту {unpack(dict['dota'])}")
+    bot.reply_to(message, f"Объявлятся парад победы на миду. Построение через 10 минут! {unpack(dict['dota'])}")
 #Зовем в свою
 @bot.message_handler(commands=['svoya'])
 def all(message):
-    bot.reply_to(message, f"Го в свою {unpack(dict['svoya'])}")
+    bot.reply_to(message, f"Уважаемые интеллектуалы, собираемся в «Свою игру». {unpack(dict['svoya'])}")
 
 
 bot.polling(none_stop=True, interval=0) #обязательная для работы бота часть
