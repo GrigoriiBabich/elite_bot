@@ -1,3 +1,4 @@
+
 import telebot
 import json
 from config import token
@@ -7,12 +8,14 @@ bot = telebot.TeleBot(token)
 dict = {}
 filename = ('data.json')
 
+#открыть .json с данными
 try:
     with open(filename, "r") as f:
         dict = json.load(f)
 except FileNotFoundError:
     pass
 
+#распаковка списка
 def unpack(s):
     return " ".join(map(str, s))
 
@@ -23,12 +26,12 @@ def join_ping_list(message):
     if len(command) < 2:
         bot.send_message(message.chat.id, "Название списка введи, плз. Например: `/join list1`")
         return
-    
+
     list_name = command[1]
     if list_name not in dict:
         bot.send_message(message.chat.id, f"Списка `{list_name}` не существует, @AeksErr может его добавить")
         return
-    
+
     username = (f"@{message.from_user.username}")
     user_id = message.from_user.id
     if username not in dict[list_name]:
@@ -39,7 +42,8 @@ def join_ping_list(message):
     else:
         bot.send_message(user_id, f"Ты уже есть в списке `{list_name}`")
 
-#Пинг всех 
+
+#Пинг всех
 @bot.message_handler(commands=['all'])
 def all(message):
     bot.reply_to(message, f"Тегаю всех в этом чятике: {unpack(dict['all'])}")
@@ -52,6 +56,12 @@ def all(message):
 @bot.message_handler(commands=['svoya'])
 def all(message):
     bot.reply_to(message, f"Уважаемые интеллектуалы, собираемся в «Свою игру». {unpack(dict['svoya'])}")
+@bot.message_handler(commands=['msk'])
+def all(message):
+    bot.reply_to(message, f"Столичные, по коням! {unpack(dict['msk'])}")
+@bot.message_handler(commands=['bf'])
+def all(message):
+    bot.reply_to(message, f"Начищаем стволы и идем в Battlefield {unpack(dict['bf'])}")
 
 
 bot.polling(none_stop=True, interval=0) #обязательная для работы бота часть
