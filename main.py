@@ -1,4 +1,3 @@
-
 import telebot
 import json
 from config import token
@@ -42,26 +41,21 @@ def join_ping_list(message):
     else:
         bot.send_message(user_id, f"Ты уже есть в списке `{list_name}`")
 
+@bot.message_handler(commands=list(dict.keys()))
+def handle_command(message):
+    command = message.text.replace("/", "")
+    if command == 'all':
+        bot.reply_to(message, f"Тегаю всех в этом чятике: {unpack(dict[command])}")
+    elif command == 'dota':
+        bot.reply_to(message, f"Объявлятся парад победы на миду. Построение через 10 минут! {unpack(dict[command])}")
+    elif command == 'svoya':
+        bot.reply_to(message, f"Уважаемые интеллектуалы, собираемся в «Свою игру». {unpack(dict[command])}")
+    elif command == 'msk':
+        bot.reply_to(message, f"Столичные, по коням! {unpack(dict[command])}")
+    elif command == 'bf':
+        bot.reply_to(message, f"Начищаем стволы и идем в Battlefield {unpack(dict[command])}")
 
-#Пинг всех
-@bot.message_handler(commands=['all'])
-def all(message):
-    bot.reply_to(message, f"Тегаю всех в этом чятике: {unpack(dict['all'])}")
-
-#Зовем в доту
-@bot.message_handler(commands=['dota'])
-def all(message):
-    bot.reply_to(message, f"Объявлятся парад победы на миду. Построение через 10 минут! {unpack(dict['dota'])}")
-#Зовем в свою
-@bot.message_handler(commands=['svoya'])
-def all(message):
-    bot.reply_to(message, f"Уважаемые интеллектуалы, собираемся в «Свою игру». {unpack(dict['svoya'])}")
-@bot.message_handler(commands=['msk'])
-def all(message):
-    bot.reply_to(message, f"Столичные, по коням! {unpack(dict['msk'])}")
-@bot.message_handler(commands=['bf'])
-def all(message):
-    bot.reply_to(message, f"Начищаем стволы и идем в Battlefield {unpack(dict['bf'])}")
 
 
 bot.polling(none_stop=True, interval=0) #обязательная для работы бота часть
+
