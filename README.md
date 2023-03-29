@@ -13,9 +13,3 @@
     ...
     }
 ```
-3. В файле main.py добавить команду 
-```py
-@bot.message_handler(commands=['list_name'])
-def all(message):
-    bot.reply_to(message, f"Не забудь описание {unpack(dict['list_name'])}")
-```
