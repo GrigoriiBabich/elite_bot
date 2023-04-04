@@ -43,7 +43,8 @@ def join_ping_list(message):
 
 @bot.message_handler(commands=list(dict.keys()))
 def handle_command(message):
-    command = message.text.replace("/", "")
+    commands = message.text.split("@")
+    command = commands[0]("/", "")
     if command == 'all':
         bot.reply_to(message, f"Тегаю всех в этом чятике: {unpack(dict[command])}")
     elif command == 'dota':
