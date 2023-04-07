@@ -24,6 +24,7 @@ def join_ping_list(message):
     command = message.text.split()
     if len(command) < 2:
         bot.send_message(message.chat.id, "Название списка введи, плз. Например: `/join list1`")
+        dict["id"].append(message.chat.id)
         return
 
     list_name = command[1]
