@@ -48,14 +48,9 @@ def handle_command(message):
     command = commands[0]("/", "")
     if command == 'all':
         bot.reply_to(message, f"Тегаю всех в этом чятике: {unpack(dict[command])}")
-    elif command == 'dota':
-        bot.reply_to(message, f"Объявлятся парад победы на миду. Построение через 10 минут! {unpack(dict[command])}")
-    elif command == 'svoya':
-        bot.reply_to(message, f"Уважаемые интеллектуалы, собираемся в «Свою игру». {unpack(dict[command])}")
-    elif command == 'msk':
-        bot.reply_to(message, f"Столичные, по коням! {unpack(dict[command])}")
-    elif command == 'bf':
-        bot.reply_to(message, f"Начищаем стволы и идем в Battlefield {unpack(dict[command])}")
+    elif command == 'other':
+        bot.reply_to(message, f"Please add following block for your commands {unpack(dict[command])}")
+
 
 
 
